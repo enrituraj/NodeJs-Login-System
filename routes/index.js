@@ -16,5 +16,16 @@ router.get('/dashboard', ensureAuthenticated, (req, res) =>
   })
 );
 
+// Edit Profile
+router.get('/edit-profile', ensureAuthenticated, (req, res) =>
+  res.render('edit_profile', {
+    user: req.user
+  })
+);
+
+router.put('/edit_profile', ensureAuthenticated , (req,res) =>{
+  const { name, email,phone, password } = req.body;
+  User.updateOne()
+})
 
 module.exports = router;

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 // Create a schema for login and register or Find Data from database
 
 const UserSchema = new mongoose.Schema({
@@ -11,6 +10,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  phone: {
+    type: Number,
+    required: true
+  },
   password: {
     type: String,
     required: true
@@ -18,6 +21,10 @@ const UserSchema = new mongoose.Schema({
   role: {
     type: String,
     default: "User"
+  },
+  verify_email: {
+    type: Boolean,
+    default: false
   },
   date: {
     type: Date,

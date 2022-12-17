@@ -56,7 +56,7 @@ app.use(function (req, res, next) {
 app.use('/', require('./routes/index'));
 
 app.get('*', (req, res) => {
-    res.send('<h1>Error</h1>')
+    res.render('error')
 })
 
 const PORT = process.env.PORT || 3000;

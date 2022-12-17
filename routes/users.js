@@ -33,10 +33,10 @@ router.get('/register', forwardAuthenticated, (req, res) =>{
 
 // Register
 router.post('/register', (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email,phone, password } = req.body;
   let errors = [];
 
-  if (!name || !email || !password ) {
+  if (!name || !email || !phone || !password ) {
     errors.push({ msg: 'Please enter all fields' });
   }
 
@@ -49,6 +49,7 @@ router.post('/register', (req, res) => {
       errors,
       name,
       email,
+      phone,
       password
     });
   } else {
@@ -58,13 +59,14 @@ router.post('/register', (req, res) => {
         res.render('register', {
           errors,
           name,
-          email,
+          email,phone,
           password
         });
       } else {
         const newUser = new User({
           name,
           email,
+          phone,
           password
         });
 
