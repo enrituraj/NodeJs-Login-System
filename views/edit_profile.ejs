@@ -156,7 +156,9 @@
                         <div class="mb-3">
                             <label class="form-label">Email address</label>
                                 <div>
-                                  <input type="email" readonly class="form-control" value="<%= typeof user.email != 'undefined' ? user.email : 'N/A' %>">
+                                  <input type="email" readonly
+                                  name="email"
+                                  class="form-control" value="<%= typeof user.email != 'undefined' ? user.email : 'N/A' %>">
                                   <small class="form-hint">We'll never share your email with anyone else.</small>
                                 </div>
                         </div>
@@ -182,19 +184,19 @@
                         <div class="mb-3">
                           <label class="form-label">Dob</label>
                           <input type="date" class="form-control" 
-                          value="<%= typeof user.dob != 'undefined' ? user.dob : 'N/A' %>"
+                          value="<%= typeof user.dob != 'undefined' ? user.dob : '01/01/1900' %>"
                           placeholder="Enter Your Dob" name="dob">
                         </div>
                         <div class="mb-3">
-                          <label class="form-label">address</label>
+                          <label class="form-label">Address</label>
                           <input type="text" class="form-control" 
                           value="<%= typeof user.address != 'undefined' ? user.address : 'N/A' %>"
                           placeholder="Enter Your Address" name="address">
                         </div>
                         <div class="mb-3">
-                          <label class="form-label">pincode</label>
+                          <label class="form-label">Pincode</label>
                           <input type="number" class="form-control" 
-                          value="<%= typeof user.pincode != 'undefined' ? user.pincode : 'N/A' %>"
+                          value="<%= typeof user.pincode != 'undefined' ? user.pincode : '0' %>"
                           placeholder="Enter Your Pincode" name="pincode">
                         </div>
                         

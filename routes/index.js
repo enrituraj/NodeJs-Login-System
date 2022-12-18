@@ -23,9 +23,43 @@ router.get('/edit-profile', ensureAuthenticated, (req, res) =>
   })
 );
 
-router.put('/edit_profile', ensureAuthenticated , (req,res) =>{
-  const { name, email,phone, password } = req.body;
-  User.updateOne()
+router.put('/edit_profile', ensureAuthenticated ,async (req,res) =>{
+    try {
+    const {name,email,username,phone,dob,address,pincode,country} = req.body;
+      const update = await User.updateOne({email},{
+        $set : {
+          name:name,
+          username:username,
+          phone:phone,
+          dob:dob,
+          address:address,
+          pincode:pincode,
+          country:country
+        }
+      })
+      if(update.modifiedCount == 1){
+        res.redirect('/dashboard')
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+
 })
+
+
+
+
+
+
+
+
+
+
+router.get('/admin', ensureAuthenticated, async (req, res) =>{
+  const all_user = await User.find();
+  res.render('admin', {all_user})
+});
+
 
 module.exports = router;

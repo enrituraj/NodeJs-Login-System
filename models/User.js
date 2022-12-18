@@ -10,6 +10,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  username:{
+    type: String,
+    required: false
+  },
   phone: {
     type: Number,
     required: true
@@ -25,6 +29,22 @@ const UserSchema = new mongoose.Schema({
   verify_email: {
     type: Boolean,
     default: false
+  },
+  dob:{
+    type: Date,
+    required: false
+  },
+  address:{
+    type: String,
+    required: false
+  },
+  pincode:{
+    type: Number,
+    required: false
+  },
+  country:{
+    type: String,
+    required: false
   },
   date: {
     type: Date,
