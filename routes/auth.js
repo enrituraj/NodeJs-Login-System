@@ -11,6 +11,15 @@ module.exports = {
         return next();
       }
       res.redirect('/dashboard');      
+    },
+    authRole: function authrole(role){
+      return (req, res,next) =>{
+        if(req.user.role !== role){
+          console.log(req.user.role);
+          res.redirect('dashboard');
+        }
+        next();
+      }
     }
 };
   

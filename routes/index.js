@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { ensureAuthenticated, forwardAuthenticated } = require('./auth');
+const { ensureAuthenticated, forwardAuthenticated,authRole } = require('./auth');
 const User = require('./../models/User')
 
 router.use('/',require('./users'));
@@ -47,18 +47,12 @@ router.put('/edit_profile', ensureAuthenticated ,async (req,res) =>{
 
 })
 
-
-
-
-
-
-
-
-
-
-router.get('/admin', ensureAuthenticated, async (req, res) =>{
+router.get('/admin', ensureAuthenticated,authRole("Admin"), async (req, res) =>{
   const all_user = await User.find();
-  res.render('admin', {all_user})
+  for (let i = 0; i < all_user.length; i++) {
+    all_user[i].no = i + 1;    
+  } 
+  res.render('admin', {user: req.user,all_user})
 });
 
 
