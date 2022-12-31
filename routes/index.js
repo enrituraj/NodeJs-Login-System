@@ -55,5 +55,14 @@ router.get('/admin', ensureAuthenticated,authRole("Admin"), async (req, res) =>{
   res.render('admin', {user: req.user,all_user})
 });
 
+router.delete('/delete_user/:id',ensureAuthenticated,authRole("Admin"),async (req, res) => {
+  try {
+      const delete_data = await User.deleteOne({_id:req.params.id})
+      res.redirect('/dashboard');      
+    } catch (error) {
+      console.log(error);
+    }  
+});
+
 
 module.exports = router;
