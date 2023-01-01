@@ -55,6 +55,16 @@ router.get('/admin', ensureAuthenticated,authRole("Admin"), async (req, res) =>{
   res.render('admin', {user: req.user,all_user})
 });
 
+
+router.get('/all_user', ensureAuthenticated,authRole("Admin"), async (req, res) =>{
+  const all_user = await User.find();
+  for (let i = 0; i < all_user.length; i++) {
+    all_user[i].no = i + 1;    
+  } 
+  res.render('all_user', {user: req.user,all_user})
+});
+
+
 router.delete('/delete_user/:id',ensureAuthenticated,authRole("Admin"),async (req, res) => {
   try {
       const delete_data = await User.deleteOne({_id:req.params.id})
